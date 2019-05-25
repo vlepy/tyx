@@ -6,7 +6,7 @@ interfaceStart() {
 
 	echo "Enter a value:" 
 	
-	#display all the entries basing on the app.xinitrc files in ~/.tyx
+	#display all the entries basing on the app.xinitrc files in ~/tyx
 	for i in `ls ~/tyx/*xinitrc`; do
 		echo -n $count": "; echo $i | awk -F "." '{print $1}' | awk -F "/" '{print $NF}'
 		count=$(($count+1))

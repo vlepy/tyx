@@ -47,10 +47,12 @@ appStart() {
 			#when done restore the original .xinitrc from the backup file made
 			cp ~/tyx/backup ~/.xinitrc
 			exit 0
+
 		#if the helper $count2 variable is less than choice made increase the helper and continunue looping untill the choice is made
 		elif [ $choice -lt $count ] 2>/dev/null; then
 			count2=$(($count2+1))
 			continue
+
 		#if the choice var contains anything else set the choice invalid and invoke the interface once again
 		else
 			echo -e "Invalid choice\n"

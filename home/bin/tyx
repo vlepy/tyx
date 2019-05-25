@@ -17,13 +17,13 @@ appStart() {
 		if [ $choice -eq $count2 ] 2>/dev/null; then
 			if [ "`head -n1 $i`" == "#TEXT" ]; then
 				sh $i
-				exit
+				exit 0
 			fi
 			cp ~/.xinitrc ~/tyx/backup
 			cp $i ~/.xinitrc
 			startx -- :1
 			cp ~/tyx/backup ~/.xinitrc
-			exit
+			exit 0
 		elif [ $choice -lt $count ] 2>/dev/null; then
 			count2=$(($count2+1))
 			continue

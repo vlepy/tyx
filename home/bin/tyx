@@ -1,0 +1,35 @@
+#!/bin/bash
+
+interfaceStart() {
+	count=1
+	echo "Enter a value:" 
+	for i in `ls ~/tyx/*xinitrc`; do
+		echo -n $count": "; echo $i | awk -F "." '{print $1}' | awk -F "/" $'{print $NF}'
+		count=$(($count+1))
+	done
+	read choice
+	appStart
+}
+
+appStart() {
+	count2=1
+	for i in `ls ~/tyx/*xinitrc`; do
+		if [ $choice -eq $count2 ] 2>/dev/null; then
+			cp ~/.xinitrc ~/tyx/backup
+			cp $i ~/.xinitrc
+			startx -- :1
+			cp ~/tyx/backup ~/.xinitrc
+			exit
+		elif [ $choice -lt $count ] 2>/dev/null; then
+			count2=$(($count2+1))
+			continue
+		else
+			echo -e "Invalid choice\n"
+			interfaceStart
+		fi
+	done
+}
+
+
+
+interfaceStart

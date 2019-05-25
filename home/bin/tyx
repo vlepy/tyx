@@ -15,6 +15,10 @@ appStart() {
 	count2=1
 	for i in `ls ~/tyx/*xinitrc`; do
 		if [ $choice -eq $count2 ] 2>/dev/null; then
+			if [ "`head -n1 $i`" == "#TEXT" ]; then
+				sh $i
+				exit
+			fi
 			cp ~/.xinitrc ~/tyx/backup
 			cp $i ~/.xinitrc
 			startx -- :1
@@ -29,7 +33,5 @@ appStart() {
 		fi
 	done
 }
-
-
 
 interfaceStart

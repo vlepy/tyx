@@ -31,7 +31,7 @@ appStart() {
 			
 			#if the app.xinitrc file contains the '#TEXT' header, launch the tui app
 			if [ "`head -n1 $i`" == "#TEXT" ]; then
-				sh $i
+				sh $i 
 				exit 0
 			fi
 			
@@ -45,8 +45,7 @@ appStart() {
 			startx -- :1
 			
 			#when done restore the original .xinitrc from the backup file made
-			cp ~/tyx/backup ~/.xinitrc
-			exit 0
+			cp ~/tyx/backup ~/.xinitrc && exit 0 || exit 1
 
 		#if the helper $count2 variable is less than choice made increase the helper and continunue looping untill the choice is made
 		elif [ $choice -lt $count ] 2>/dev/null; then

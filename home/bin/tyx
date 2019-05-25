@@ -1,32 +1,57 @@
 #!/bin/bash
 
 interfaceStart() {
+	#set the first helper counter variable
 	count=1
+
 	echo "Enter a value:" 
+	
+	#display all the entries basing on the app.xinitrc files in ~/.tyx
 	for i in `ls ~/tyx/*xinitrc`; do
 		echo -n $count": "; echo $i | awk -F "." '{print $1}' | awk -F "/" '{print $NF}'
 		count=$(($count+1))
 	done
+
+	#take user input for the choice made
 	read choice
+
+	#invoke the appStart routine that launches the app
 	appStart
 }
 
 appStart() {
+
+	#set the second helper counter variable
 	count2=1
+
 	for i in `ls ~/tyx/*xinitrc`; do
+		
+		#if the choice variable equals the iteration the loop is at launch the app
 		if [ $choice -eq $count2 ] 2>/dev/null; then
+			
+			#if the app.xinitrc file contains the '#TEXT' header, launch the tui app
 			if [ "`head -n1 $i`" == "#TEXT" ]; then
 				sh $i
 				exit 0
 			fi
-			cp ~/.xinitrc ~/tyx/backup
+			
+			#backup the original .xinitrc of the user
+			cp ~/.xinitrc ~/tyx/backup 2>/dev/null
+			
+			#copy the selected app.xinitrc to ~/.xinitrc
 			cp $i ~/.xinitrc
+
+			#start xorg at the second xorg display
 			startx -- :1
+			
+			#when done restore the original .xinitrc from the backup file made
 			cp ~/tyx/backup ~/.xinitrc
 			exit 0
+		#if the helper $count2 variable is less than choice made increase the helper and continunue looping untill the choice is made
 		elif [ $choice -lt $count ] 2>/dev/null; then
 			count2=$(($count2+1))
 			continue
+		#if the choice var contains anything else set the choice invalid and invoke the interface once again
 		else
 			echo -e "Invalid choice\n"
 			interfaceStart

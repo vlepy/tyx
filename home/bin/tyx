@@ -26,11 +26,12 @@ appStart() {
 
 	for i in `ls ~/tyx/*xinitrc`; do
 		
-		#if the choice variable equals the iteration the loop is at launch the app
+
 		if [ $count -eq 0 ]; then
 			echo "No app.xinitrc files found, exiting."
 			exit
 		fi
+		#if the choice variable equals the iteration the loop is at launch the app
 		if [ $choice -eq $count2 ] 2>/dev/null; then
 			
 			#if the app.xinitrc file contains the '#TEXT' header, launch the tui app

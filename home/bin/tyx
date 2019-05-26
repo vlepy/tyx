@@ -28,6 +28,7 @@ appStart() {
 		
 		#if the choice variable equals the iteration the loop is at launch the app
 		if [ $count -eq 0 ]; then
+			echo "No app.xinitrc files found, exiting."
 			exit
 		fi
 		if [ $choice -eq $count2 ] 2>/dev/null; then

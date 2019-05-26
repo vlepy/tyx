@@ -1,7 +1,7 @@
 #!/bin/bash
 
 interfaceStart() {
-	#set the first helper counter variable
+	#set the first helper counter variable, represents amount of app.xinitrc files available
 	count=1
 
 	echo "Enter a value:" 
@@ -21,7 +21,7 @@ interfaceStart() {
 
 appStart() {
 
-	#set the second helper counter variable
+	#set the second helper counter variable, represets the current iteration number
 	count2=1
 
 	for i in `ls ~/tyx/*xinitrc`; do
@@ -46,6 +46,7 @@ appStart() {
 			
 			#when done restore the original .xinitrc from the backup file made
 			cp ~/tyx/backup ~/.xinitrc 2>/dev/null
+			echo "done"			
 			exit 0
 
 		#if the helper $count2 variable is less than choice made increase the helper and continunue looping untill the choice is made
@@ -53,7 +54,7 @@ appStart() {
 			count2=$(($count2+1))
 			continue
 
-		#if the choice var contains anything else set the choice invalid and invoke the interface once again
+		#if the choice var contains anything else, set the choice invalid and invoke the interface once again
 		else
 			echo -e "Invalid choice\n"
 			interfaceStart

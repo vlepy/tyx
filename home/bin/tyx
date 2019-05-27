@@ -25,8 +25,8 @@ appStart() {
 	count2=1
 
 	for i in `ls ~/tyx/*xinitrc`; do
-		#if no app.xinitrc files were found: exit
 		
+		#if no app.xinitrc files were found: exit
 		if [ $count -eq 0 ]; then
 			echo "No app.xinitrc files found, exiting."
 			exit

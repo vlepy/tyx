@@ -1,2 +1,1 @@
-#TEXT
-htop
+exec startfluxbox

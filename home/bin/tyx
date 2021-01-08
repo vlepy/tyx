@@ -56,7 +56,7 @@ appStart() {
 			exit 0
 
 		#if the helper $count2 variable is less than choice made increase the helper and continunue looping untill the choice is made
-		elif [ $choice -lt $count ] 2>/dev/null; then
+		elif [ $choice -le $count ] 2>/dev/null; then
 			count2=$(($count2+1))
 			continue
 
